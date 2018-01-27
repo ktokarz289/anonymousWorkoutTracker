@@ -2,6 +2,19 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css")
+    script(rel="text/javascript" src="/javascripts/modules/navigation.js")
   body
+    div.w3-sidebar.w3-bar-block.w3-blue-grey(id="side-bar")
+      button(class="w3-large w3-right" onclick="homepage.closeSideBar();")
+        | &times;
+      a(href="#" class="w3-bar-item w3-button")
+        | Text1
+      a(href="#" class="w3-bar-item w3-button")
+        | Text1
+      a(href="#" class="w3-bar-item w3-button")
+        | Text1
+    div
+      button(class="w3-button w3-xlarge" onclick="homepage.openSideBar();")
+        |☰
     block content
