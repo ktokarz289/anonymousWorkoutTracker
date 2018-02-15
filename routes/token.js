@@ -10,11 +10,14 @@ const oAuth2Client = new OAuth2Client(
     keys.web.redirect_uris[0]
   );
 
-
 router.post('/signin', function(req, res, next) {
     oAuth2Client.verifyIdToken({
-        idToken: req.body.idToken,
+        idToken: req.body.idtoken,
         audience: keys.web.client_id
+    }, 
+    function(e, login) {
+        var payload = login.getPayload();
+        var userid = payload.sub;
     });
 });
 
