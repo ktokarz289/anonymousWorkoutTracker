@@ -1,17 +1,27 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var uuidv5 = require('uuid/v5');
 
+var keys = require('./keys/cookie.json');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var lifting = require('./controllers/lifting');
 var token = require('./routes/token');
 
 var app = express();
-
+app.use(session({
+  genid: function(req) {
+    return uuidv5('localhost:3000', uuidv5.URL);
+  },
+  secret: keys.cookieSecret,
+  resave: false,
+  saveUninitialized: true
+}));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
