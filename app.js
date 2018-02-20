@@ -14,13 +14,21 @@ var lifting = require('./controllers/lifting');
 var token = require('./routes/token');
 
 var app = express();
+var redisStore = require('connect-redis')(session);
+var redis   = require("redis");
+var client  = redis.createClient();
+
 app.use(session({
   genid: function(req) {
     return uuidv5('localhost:3000', uuidv5.URL);
   },
   secret: keys.cookieSecret,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false,
+  store: new redisStore({
+    client: client,
+    ttl: 260
+  })
 }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
