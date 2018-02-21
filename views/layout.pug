@@ -4,10 +4,15 @@ html
     title= title
     link(rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css")
     script(rel="text/javascript" src="/javascripts/modules/navigation.js")
+    script(rel="text/javascript" src="/javascripts/modules/login.js")
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="1053515757391-qm17ja08tlmq37mi70eepbnv19gutrqr.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   body
     div.w3-sidebar.w3-bar-block.w3-blue-grey(id="side-bar" style="display: none;")
       button(class="w3-large w3-right" onclick="homepage.closeSideBar();")
         | &times;
+      div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark")
       a(href="/lifting" class="w3-bar-item w3-button")
         | Lifting
       a(href="#" class="w3-bar-item w3-button")
@@ -17,4 +22,4 @@ html
     div
       button(class="w3-button w3-xlarge" onclick="homepage.openSideBar();")
         |☰
-    block content
+    block content      
