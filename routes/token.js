@@ -19,7 +19,7 @@ router.post('/signin', function(req, res, next) {
         var payload = login.getPayload();
         var userid = payload.sub;
 
-        req.session.key = userid;
+        req.session.id = userid;
         res.end('done');
     });
 });
