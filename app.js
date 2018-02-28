@@ -10,7 +10,7 @@ var uuidv5 = require('uuid/v5');
 var keys = require('./keys/cookie.json');
 var index = require('./routes/index');
 var users = require('./routes/users');
-var lifting = require('./controllers/lifting');
+var lifting = require('./routes/lifting');
 var token = require('./routes/token');
 
 var app = express();
