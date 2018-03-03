@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var uuidv5 = require('uuid/v5');
 
-var keys = require('./keys/cookie.json');
+const env = require('dotenv').config();
 var index = require('./routes/index');
 var users = require('./routes/users');
 var lifting = require('./routes/lifting');
@@ -22,7 +22,7 @@ app.use(session({
   genid: function(req) {
     return uuidv5('localhost:3000', uuidv5.URL);
   },
-  secret: keys.cookieSecret,
+  secret: process.env.GOOGLE_IDENTITY_SECRET,
   resave: false,
   saveUninitialized: false,
   store: new redisStore({
