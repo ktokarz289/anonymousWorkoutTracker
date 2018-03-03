@@ -20,7 +20,6 @@
     "passport": "^0.4.0",
     "pg": "^7.4.1",
     "pug": "2.0.0-beta11",
-    "sails-postgresql": "^0.11.4",
     "serve-favicon": "~2.4.5",
     "uuid": "^3.2.1"
   },
