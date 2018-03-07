@@ -19,7 +19,7 @@ class LiftingExercise {
     }
 
     create() {
-        let text = "INSERT INTO LiftingExercise (Id, UserId, Name, Sets, Reps, Weight) VALUES ($1, $2, $3, $4, $5, $6)";
+        let text = 'INSERT INTO app."LiftingExercise" ("Id", "UserId", "Name", "Sets", "Reps", "Weight") VALUES ($1, $2, $3, $4, $5, $6)';
         let values = [this.id, this.userId, this.exerciseName, this.sets, this.reps, this.weight];
 
         pool.query(text, values)
@@ -30,7 +30,7 @@ class LiftingExercise {
     }
 
     update() {
-        let text = 'UPDATE LiftingExercise SET UserId = $1, Name = $2, Sets = $3, Reps = $4, Weight $5 WHERE Id = $6';
+        let text = 'UPDATE app."LiftingExercise" SET "UserId" = $1, "Name" = $2, "Sets" = $3, "Reps" = $4, "Weight" $5 WHERE Id = $6';
         let values = [this.userId, this.exerciseName, this.sets, this.reps, this.weight, this.id];
 
         pool.query(text, values)
@@ -41,7 +41,7 @@ class LiftingExercise {
     }
 
     delete() {
-        let text = "DELETE FROM LiftingExercise WHERE Id = $1";
+        let text = 'DELETE FROM app."LiftingExercise" WHERE Id = $1';
         let values = [this.id];
 
         pool.query(text, values)
