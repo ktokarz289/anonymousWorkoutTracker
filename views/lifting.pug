@@ -4,21 +4,21 @@ block content
     div(style="width: 75%; margin: auto;")
         h2.w3-blue-grey
             | Exercise Info
-        form.w3-container(action="")
+        form.w3-container(action="/lifting/exercise" method="POST")
             div.w3-section
-                label(for="exercise-name")
+                label(for="exerciseName")
                     | Exercise Name:
-                input(name="exercise-name" class="w3-input")
+                input(name="exerciseName" class="w3-input" required)
             div.w3-section
                 label(for="weight")
                     | Weight: 
-                input(name="weight" class="w3-input")
+                input(name="weight" class="w3-input" required)
             div.w3-section
                 label(for="sets")
                     | Sets: 
-                input(name="sets" class="w3-input" type="number")
+                input(name="sets" class="w3-input" type="number" required)
             div.w3-section
                 label(for="reps")
                     | Reps: 
-                input(name="reps" class="w3-input" type="number")
+                input(name="reps" class="w3-input" type="number" required)
             input(class="w3-button w3-blue-grey" type="submit")
