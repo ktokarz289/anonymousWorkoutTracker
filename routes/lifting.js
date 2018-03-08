@@ -4,8 +4,10 @@ const { check, validationResult } = require('express-validator/check');
 const { matchedData, sanitize } = require('express-validator/filter');
 const LiftingExercise = require('../models/lifting-exercise');
 const uuidv4 = require('uuid/v4');
+var LiftingExerciseRepository = require("../repositories/lifting-exercise-repository");
 
 router.get('/', function (req, res, next) {
+    var liftingExerciseRepository = new LiftingExerciseRepository();
     res.render('lifting', {title: "Lifting"});
 });
 
