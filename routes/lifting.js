@@ -13,6 +13,10 @@ router.get('/', function (req, res, next) {
     
 });
 
+router.get('/exercise', function (req, res, next) {
+    res.render('lifting', {title: "Create"});
+});
+
 router.post("/exercise", function (req, res, next) {
     check('exerciseName', 'weight', 'sets', 'reps').isLength({min: 1});
     sanitize('exerciseName', 'weight', 'sets', 'reps').trim().escape();
