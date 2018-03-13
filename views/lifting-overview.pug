@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    table(style="width: 75%; margin:auto;" class="w3-table w3-striped w3-bordered")
+        thead
+                tr.w3-blue-grey
+                    th="Exercise Name:"
+                    th="Weight:"
+                    th="Sets:"
+                    th="Reps:"
+        each lifting in lifts
+            tr
+                td= lifting.exerciseName
+                td= lifting.weight
+                td= lifting.sets
+                td= lifting.reps

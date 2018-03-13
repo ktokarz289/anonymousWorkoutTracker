@@ -7,8 +7,10 @@ const uuidv4 = require('uuid/v4');
 var LiftingExerciseRepository = require("../repositories/lifting-exercise-repository");
 
 router.get('/', function (req, res, next) {
+    var renderView = function() { res.render('lifting-overview', {title: "Lifting", lifts: liftingExerciseRepository.liftingExercises}); };
     var liftingExerciseRepository = new LiftingExerciseRepository();
-    res.render('lifting', {title: "Lifting"});
+    liftingExerciseRepository.select(renderView);
+    
 });
 
 router.post("/exercise", function (req, res, next) {

@@ -12,10 +12,9 @@ const pool = new Pool({
 class LiftingExerciseRepository {
     constructor() {
         this.liftingExercises = [];
-        this.select();
     }
 
-    select() {
+    select(callback) {
         let text = 'SELECT "Id", "UserId", "Name", "Sets", "Reps", "Weight" FROM app."LiftingExercise"';
 
         pool.query(text)
@@ -26,6 +25,8 @@ class LiftingExerciseRepository {
                         var liftingExercise = new LiftingExercise(row.Id, row.UserId, row.Name, row.Weight, row.Reps, row.Sets);
                         liftingExerciseRepository.liftingExercises.push(liftingExercise);
                     });
+
+                    callback();
                 }
             })
             .catch(e => { 
