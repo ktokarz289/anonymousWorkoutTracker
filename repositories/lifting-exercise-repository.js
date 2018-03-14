@@ -33,6 +33,12 @@ class LiftingExerciseRepository {
                 console.error(e.stack); 
             });
     }
+
+    findById(liftingId) {
+        return this.liftingExercises.find(function(liftingExercise) {
+            return liftingExercise.id === liftingId;
+        });
+    }
 }
 
 module.exports = LiftingExerciseRepository;
