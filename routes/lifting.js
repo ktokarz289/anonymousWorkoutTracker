@@ -4,9 +4,17 @@ const { check, validationResult } = require('express-validator/check');
 const { matchedData, sanitize } = require('express-validator/filter');
 const LiftingExercise = require('../models/lifting-exercise');
 const uuidv4 = require('uuid/v4');
+var LiftingExerciseRepository = require("../repositories/lifting-exercise-repository");
 
 router.get('/', function (req, res, next) {
-    res.render('lifting', {title: "Lifting"});
+    var renderView = function() { res.render('lifting-overview', {title: "Lifting", lifts: liftingExerciseRepository.liftingExercises}); };
+    var liftingExerciseRepository = new LiftingExerciseRepository();
+    liftingExerciseRepository.select(renderView);
+    
+});
+
+router.get('/exercise', function (req, res, next) {
+    res.render('lifting', {title: "Create"});
 });
 
 router.post("/exercise", function (req, res, next) {
