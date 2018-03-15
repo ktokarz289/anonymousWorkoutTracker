@@ -11,6 +11,8 @@ block content
                         th="Reps:"
             each lifting in lifts
                 tr
+                    td(onclick="exercises.deleteLifting('" + lifting.id + "')")
+                        | delete
                     td= lifting.exerciseName
                     td= lifting.weight
                     td= lifting.sets

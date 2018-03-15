@@ -1,10 +1,13 @@
-var exercises = (function() {
-    const https = require('http');
 
+
+var exercises = (function() {
     var deleteLifting = function(liftingId) {
-       https.request({
+       axios({
            method: "DELETE",
-           url: "/lifting/exercise?id=" + liftingId
+           url: "/lifting/exercise",
+           data: {
+               id: liftingId
+           }
        });
 
     };

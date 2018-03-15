@@ -27,4 +27,16 @@ router.post("/exercise", function (req, res, next) {
     res.redirect("/lifting");
 });
 
+router.delete("/exercise", function(req, res, next) {
+    var liftingId = req.body.id;
+
+    var deleteLifting = function () {
+        var lifting = liftingExerciseRepository.findById(liftingId);
+        lifting.delete();
+    }
+
+    var liftingExerciseRepository = new LiftingExerciseRepository();
+    liftingExerciseRepository.select(deleteLifting);
+});
+
 module.exports = router;

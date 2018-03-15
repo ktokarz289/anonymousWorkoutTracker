@@ -41,7 +41,7 @@ class LiftingExercise {
     }
 
     delete() {
-        let text = 'DELETE FROM app."LiftingExercise" WHERE Id = $1';
+        let text = 'DELETE FROM app."LiftingExercise" WHERE "Id" = $1';
         let values = [this.id];
 
         pool.query(text, values)
