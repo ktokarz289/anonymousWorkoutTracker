@@ -1,16 +1,15 @@
-var express = require("express");
-var router = express.Router();
+const Router = require('express-promise-router');
+var router = new Router();
 const { check, validationResult } = require('express-validator/check');
 const { matchedData, sanitize } = require('express-validator/filter');
 const LiftingExercise = require('../models/lifting-exercise');
 const uuidv4 = require('uuid/v4');
 var LiftingExerciseRepository = require("../repositories/lifting-exercise-repository");
 
-router.get('/', function (req, res, next) {
-    var renderView = function() { res.render('lifting-overview', {title: "Lifting", lifts: liftingExerciseRepository.liftingExercises}); };
+router.get('/', async (req, res) => {
     var liftingExerciseRepository = new LiftingExerciseRepository();
-    liftingExerciseRepository.select(renderView);
-    
+    await liftingExerciseRepository.select();
+    res.render('lifting-overview', {title: "Lifting", lifts: liftingExerciseRepository.liftingExercises});
 });
 
 router.get('/exercise', function (req, res, next) {
