@@ -12,7 +12,7 @@ block content
             each lifting in lifts
                 tr
                     td(onclick="exercises.deleteLifting('" + lifting.id + "')")
-                        | delete
+                        span.fas.fa-trash
                     td= lifting.exerciseName
                     td= lifting.weight
                     td= lifting.sets

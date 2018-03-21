@@ -6,7 +6,7 @@ const LiftingExercise = require('../models/lifting-exercise');
 const uuidv4 = require('uuid/v4');
 var LiftingExerciseRepository = require("../repositories/lifting-exercise-repository");
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     var liftingExerciseRepository = new LiftingExerciseRepository();
     await liftingExerciseRepository.select();
     res.render('lifting-overview', {title: "Lifting", lifts: liftingExerciseRepository.liftingExercises});
@@ -26,16 +26,14 @@ router.post("/exercise", function (req, res, next) {
     res.redirect("/lifting");
 });
 
-router.delete("/exercise", function(req, res, next) {
+router.delete("/exercise", async (req, res, next) => {
     var liftingId = req.body.id;
 
-    var deleteLifting = function () {
-        var lifting = liftingExerciseRepository.findById(liftingId);
-        lifting.delete();
-    }
-
     var liftingExerciseRepository = new LiftingExerciseRepository();
-    liftingExerciseRepository.select(deleteLifting);
+    await liftingExerciseRepository.select();
+
+    var lifting = liftingExerciseRepository.findById(liftingId);
+    lifting.delete();
 });
 
 module.exports = router;
