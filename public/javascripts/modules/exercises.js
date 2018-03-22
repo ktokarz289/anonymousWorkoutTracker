@@ -8,8 +8,15 @@ var exercises = (function() {
            data: {
                id: liftingId
            }
-       });
-
+       })
+       .then(function(response) {
+            alert("test");
+            location.reload();
+       })
+       .catch(function(error) {
+           debugger;
+            alert("failed");
+       }); 
     };
 
     return {

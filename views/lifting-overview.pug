@@ -5,14 +5,15 @@ block content
         table(class="w3-table w3-striped w3-bordered")
             thead
                     tr.w3-blue-grey
+                        th
                         th="Exercise Name:"
                         th="Weight:"
                         th="Sets:"
                         th="Reps:"
             each lifting in lifts
-                tr
+                tr(id=lifting.id)
                     td(onclick="exercises.deleteLifting('" + lifting.id + "')")
-                        span.fas.fa-trash
+                        | delete
                     td= lifting.exerciseName
                     td= lifting.weight
                     td= lifting.sets

@@ -16,12 +16,12 @@ router.get('/exercise', function (req, res, next) {
     res.render('lifting', {title: "Create"});
 });
 
-router.post("/exercise", function (req, res, next) {
+router.post("/exercise", async (req, res, next) => {
     check('exerciseName', 'weight', 'sets', 'reps').isLength({min: 1});
     sanitize('exerciseName', 'weight', 'sets', 'reps').trim().escape();
     var id = uuidv4();
     var liftingExercise = new LiftingExercise(id, req.session.id, req.body.exerciseName, req.body.weight, req.body.sets, req.body.reps);
-    liftingExercise.create();
+    await liftingExercise.create();
 
     res.redirect("/lifting");
 });
@@ -33,7 +33,10 @@ router.delete("/exercise", async (req, res, next) => {
     await liftingExerciseRepository.select();
 
     var lifting = liftingExerciseRepository.findById(liftingId);
-    lifting.delete();
+    await lifting.delete();
+
+    res.status(200);
+    res.send();
 });
 
 module.exports = router;

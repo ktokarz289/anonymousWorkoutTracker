@@ -1,12 +1,5 @@
-const { Pool, Client } = require('pg');
+const db = require('../database');
 const env = require('dotenv').config();
-const pool = new Pool({
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
-    database: process.env.PGDATABASE,
-    password: process.env.PGSECRET,
-    port: process.env.PGPORT
-});
 
 class LiftingExercise {
     constructor(id, userId, exerciseName, weight, reps, sets) {
@@ -18,15 +11,11 @@ class LiftingExercise {
         this.sets = sets; 
     }
 
-    create() {
+    async create() {
         let text = 'INSERT INTO app."LiftingExercise" ("Id", "UserId", "Name", "Sets", "Reps", "Weight") VALUES ($1, $2, $3, $4, $5, $6)';
         let values = [this.id, this.userId, this.exerciseName, this.sets, this.reps, this.weight];
 
-        pool.query(text, values)
-            .then(res => {
-                console.log(res.rows[0]);
-            })
-            .catch(e => console.error(e.stack));
+        await db.query(text, values);
     }
 
     update() {
@@ -40,15 +29,11 @@ class LiftingExercise {
             .catch(e => console.error(e.stack));
     }
 
-    delete() {
+    async delete() {
         let text = 'DELETE FROM app."LiftingExercise" WHERE "Id" = $1';
         let values = [this.id];
 
-        pool.query(text, values)
-            .then(res => {
-                console.log(res.rows[0]);
-            })
-            .catch(e => console.error(e.stack));
+        await db.query(text, values);
     }
 }
 
