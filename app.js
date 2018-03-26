@@ -18,6 +18,8 @@ var redisStore = require('connect-redis')(session);
 var redis   = require("redis");
 var client  = redis.createClient();
 
+app.use("/scripts", express.static(path.join(__dirname, "node_modules/axios/dist")));
+
 app.use(session({
   genid: function(req) {
     return uuidv5('localhost:3000', uuidv5.URL);
