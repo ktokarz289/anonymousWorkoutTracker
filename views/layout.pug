@@ -11,17 +11,16 @@ html
     <meta name="google-signin-client_id" content="1053515757391-qm17ja08tlmq37mi70eepbnv19gutrqr.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
   body
-    div.w3-sidebar.w3-bar-block.w3-blue-grey(id="side-bar" style="display: none;")
-      button(class="w3-large w3-right" onclick="homepage.closeSideBar();")
-        | &times;
+    div(style="display:flex; justify-content: space-between;")
+      div.w3-sidebar.w3-bar-block.w3-blue-grey(id="side-bar" style="display: none;")
+        button(class="w3-large w3-right" onclick="homepage.closeSideBar();")
+          | &times;
+        a(href="/" class="w3-bar-item w3-button")
+          | Home
+        a(href="/lifting" class="w3-bar-item w3-button")
+          | Lifting
+      div
+        button(class="w3-button w3-xlarge" onclick="homepage.openSideBar();")
+          |☰
       div(class="g-signin2" data-onsuccess="onSignIn" data-theme="dark")
-      a(href="/lifting" class="w3-bar-item w3-button")
-        | Lifting
-      a(href="#" class="w3-bar-item w3-button")
-        | Text1
-      a(href="#" class="w3-bar-item w3-button")
-        | Text1
-    div
-      button(class="w3-button w3-xlarge" onclick="homepage.openSideBar();")
-        |☰
     block content      
