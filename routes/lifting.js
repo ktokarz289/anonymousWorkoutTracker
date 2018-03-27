@@ -9,7 +9,7 @@ var LiftingExerciseRepository = require("../repositories/lifting-exercise-reposi
 router.get('/', async (req, res, next) => {
     var liftingExerciseRepository = new LiftingExerciseRepository();
     await liftingExerciseRepository.select();
-    res.render('lifting-overview', {title: "Lifting", lifts: liftingExerciseRepository.liftingExercises});
+    res.render('lifting-overview', {title: "Lifting Overview", lifts: liftingExerciseRepository.liftingExercises});
 });
 
 router.get('/exercise', function (req, res, next) {
