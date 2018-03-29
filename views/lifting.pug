@@ -8,7 +8,13 @@ block content
             div.w3-section
                 label(for="exerciseName")
                     | Exercise Name:
-                input(name="exerciseName" class="w3-input" required)
+                select(name="exerciseName" class="w3-input" required)
+                    option(value="Dumbbell Press" selected)
+                        | Dumbbell Press
+                    option(value="Curl")
+                        | Curl
+                    option(value="Leg Press")
+                        | Leg Press
             div.w3-section
                 label(for="weight")
                     | Weight: 

@@ -10,7 +10,6 @@ var exercises = (function() {
            }
        })
        .then(function(response) {
-            alert("test");
             location.reload();
        })
        .catch(function(error) {

@@ -12,6 +12,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var lifting = require('./routes/lifting');
 var token = require('./routes/token');
+var progress = require('./routes/progress');
 
 var app = express();
 var redisStore = require('connect-redis')(session);
@@ -48,6 +49,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/lifting', lifting);
 app.use('/token', token);
+app.use('/progress', progress);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
